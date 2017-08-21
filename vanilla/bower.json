@@ -1,0 +1,22 @@
+{
+  "name": "polymer-graphql",
+  "homepage": "https://github.com/matteo-hertel/polymer-graphql",
+  "authors": [
+    "Matteo Hertel <info@matteohertel.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "apollo-client": "git://github.com/apollographql/apollo-client.git#1.9.0",
+    "graphql-tag": "git://github.com/apollographql/graphql-tag.git#2.4.1"
+  }
+}
