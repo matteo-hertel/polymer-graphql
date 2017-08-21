@@ -1,0 +1,8 @@
+{
+  "entrypoint": "index.html",
+  "fragments": [],
+  "sources": [
+    "bower_components/webcomponentsjs/webcomponents-loader.js",
+    "bower_components/webcomponentsjs/webcomponents-lite.js"
+  ]
+}

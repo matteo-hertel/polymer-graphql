@@ -1,0 +1,62 @@
+<link rel="import" href="../polymer/polymer-element.html">
+<link rel="import" href="./mixins/apollo-mixin.html">
+<dom-module id="graphql-test">
+  <template>
+    <style>
+       :host {
+        display: block;
+      }
+    </style>
+    <h2>Hello [[_toJSON(allLinksQuery)]]!</h2>
+  </template>
+
+  <script>
+    /**
+     * `graphql-test`
+     * graph-ql test
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/index.html
+     */
+    class GraphqlTest extends ApolloMixin(Polymer.Element) {
+      static get is() { return 'graphql-test'; }
+      static get properties() {
+        return {
+          prop1: {
+            type: String,
+            value: 'graphql-test'
+          },
+          allLinksQuery: {
+            type: Object,
+            value: {}
+          }
+        };
+      }
+      _toJSON(value) {
+        return JSON.stringify(value, null, 4)
+      }
+      ready() {
+        super.ready();
+        this.query = `{
+                      allLinks{
+                        id,
+                        description,
+                        url,
+                        votes{
+                          id,
+                          user{
+                            name
+                          }
+                        }
+                      }
+                    }`
+        this.executeQuery({
+          property: "allLinksQuery"
+        });
+      }
+    }
+
+    window.customElements.define(GraphqlTest.is, GraphqlTest);
+  </script>
+</dom-module>

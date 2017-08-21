@@ -1,0 +1,37 @@
+<link rel="import" href="../libs/apollo-client.html">
+<link rel="import" href="../libs/graphql-tag.html">
+<link rel="import" href="../config.html">
+
+<script>
+    const ApolloClient = apolloClient.default;
+    const createNetworkInterface = apolloClient.createNetworkInterface;
+    const gql = graphqlTag.default;
+
+    const networkInterface = createNetworkInterface(Config.apollo)
+    const client = new ApolloClient({
+        networkInterface,
+    });
+
+
+    ApolloMixin = function (superClass) {
+        return class extends superClass {
+            set query(value) {
+                if (!value || typeof value !== "string") {
+                    return;
+                }
+                this._query = gql(value);
+            }
+            executeQuery(config) {
+                if (!this._query) {
+                    throw new Error("You must set your GraphQL query")
+                }
+                client.query({ query: this._query }).then((results) => {
+                    if (config.property) {
+                        this.set(config.property, results)
+                    }
+                })
+            }
+        }
+    }
+
+</script>
