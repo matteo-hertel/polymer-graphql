@@ -38,19 +38,26 @@
       }
       ready() {
         super.ready();
-        this.query = `{
-                      allLinks{
-                        id,
-                        description,
-                        url,
-                        votes{
-                          id,
-                          user{
-                            name
-                          }
-                        }
-                      }
-                    }`
+        // this.query = `{
+        //               allLinks{
+        //                 id,
+        //                 description,
+        //                 url,
+        //                 votes{
+        //                   id,
+        //                   user{
+        //                     name
+        //                   }
+        //                 }
+        //               }
+        //             }`
+        this.query = `mutation{
+  createLink(url: "google.com", description: "best serach engine") {
+    url
+    description
+  }
+}`
+
         this.executeQuery({
           property: "allLinksQuery"
         });
